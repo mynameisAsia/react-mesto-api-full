@@ -5,6 +5,8 @@ const ConflictError = require('../errors/Conflict');
 const NotFound = require('../errors/NotFound');
 const User = require('../models/user');
 
+const { JWT = 'some-secret-key' } = process.env;
+
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
@@ -12,7 +14,7 @@ module.exports.login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        'some-secret-key',
+        JWT,
         { expiresIn: '7d' },
       );
       res.cookie('jwt', token, { maxAge: 3600000, httpOnly: true }).send({ token });

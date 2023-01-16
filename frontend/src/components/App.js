@@ -41,7 +41,6 @@ function App() {
     const [isLoading, setIsLoading] = React.useState(false);
     const [isInfoToolTipOpen, setIsInfoToolTipOpen] = React.useState(false);
     const [isAuthSucceed, setIsAuthSucceed] = React.useState(false);
-    const [isMobileHeaderOpen, setIsMobileHeaderOpen] = React.useState(false);
 
     useEffect(() => {
         if (loggedIn) {

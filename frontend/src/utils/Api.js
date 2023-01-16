@@ -1,4 +1,5 @@
 class Api {
+    // eslint-disable-next-line no-useless-constructor
     constructor() {
       
     }
@@ -11,10 +12,9 @@ class Api {
     }
 
     getUserInfo() {
-        return fetch ('https://nomoreparties.co/v1/cohort-50/users/me', {
+        return fetch ('http://api.amam.mesto.nomoredomains.rocks/users/me', {
             method: 'GET',
             headers: {
-                authorization: 'd4f68056-59ea-430a-8f1d-8d7b59fc70d1',
                 'Content-Type': 'application/json'
             }
         })
@@ -22,20 +22,19 @@ class Api {
     }
   
     getInitialCards() {
-        return fetch ('https://mesto.nomoreparties.co/v1/cohort-50/cards', {
+        return fetch ('http://api.amam.mesto.nomoredomains.rocks/cards', {
             method: 'GET',
             headers: {
-                authorization: 'd4f68056-59ea-430a-8f1d-8d7b59fc70d1'
+                'Content-Type': 'application/json'
             }
         })
             .then (this._getResponseData)
     }
 
     updateUserInfo(data) {
-        return fetch ('https://nomoreparties.co/v1/cohort-50/users/me', {
+        return fetch ('http://api.amam.mesto.nomoredomains.rocks/users/me', {
             method: 'PATCH',
             headers: {
-                authorization: 'd4f68056-59ea-430a-8f1d-8d7b59fc70d1',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -47,10 +46,9 @@ class Api {
     }
 
     addNewCard(data) {
-        return fetch ('https://mesto.nomoreparties.co/v1/cohort-50/cards', {
+        return fetch ('http://api.amam.mesto.nomoredomains.rocks/cards', {
             method: 'POST',
             headers: {
-                authorization: 'd4f68056-59ea-430a-8f1d-8d7b59fc70d1',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -62,10 +60,9 @@ class Api {
     }
 
     likeCards(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-50/cards/likes/${cardId}`, {
+        return fetch(`http://api.amam.mesto.nomoredomains.rocks/cards/${cardId}/likes`, {
             method: 'PUT',
             headers: {
-                authorization: 'd4f68056-59ea-430a-8f1d-8d7b59fc70d1',
                 'Content-Type': 'application/json'
             }
         })
@@ -73,10 +70,9 @@ class Api {
     }
 
     removeLike(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-50/cards/likes/${cardId}`, {
+        return fetch(`http://api.amam.mesto.nomoredomains.rocks/cards/${cardId}/likes`, {
             method: 'DELETE',
             headers: {
-                authorization: 'd4f68056-59ea-430a-8f1d-8d7b59fc70d1',
                 'Content-Type': 'application/json'
             },
         })
@@ -84,10 +80,9 @@ class Api {
     }
 
     deleteCard(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-50/cards/${cardId}`, {
+        return fetch(`http://api.amam.mesto.nomoredomains.rocks/cards/${cardId}`, {
             method: 'DELETE',
             headers: {
-                authorization: 'd4f68056-59ea-430a-8f1d-8d7b59fc70d1',
                 'Content-Type': 'application/json'
             },
         })
@@ -95,10 +90,9 @@ class Api {
     }
 
     changeAvatar(data) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-50/users/me/avatar', {
+        return fetch('http://api.amam.mesto.nomoredomains.rocks/users/me/avatar', {
             method: 'PATCH',
             headers: {
-                authorization: 'd4f68056-59ea-430a-8f1d-8d7b59fc70d1',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -110,9 +104,8 @@ class Api {
   }
 
 export const api = new Api ({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-50',
+    baseUrl: 'http://api.amam.mesto.nomoredomains.rocks',
     headers: {
-      authorization: 'd4f68056-59ea-430a-8f1d-8d7b59fc70d1',
       'Content-Type': 'application/json'
     }
   })
