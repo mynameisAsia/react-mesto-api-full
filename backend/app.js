@@ -1,5 +1,5 @@
 // app.js — входной файл
-
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
