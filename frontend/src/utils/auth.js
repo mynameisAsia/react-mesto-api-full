@@ -9,7 +9,8 @@ export const register = (email, password) => {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Origin': 'http://amam.mesto.nomoredomains.rocks'
     },
     body: JSON.stringify({email, password})
   })
@@ -22,6 +23,7 @@ export const login = (email, password) => {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'Origin': 'http://amam.mesto.nomoredomains.rocks'
       },
       body: JSON.stringify({email, password})
     })

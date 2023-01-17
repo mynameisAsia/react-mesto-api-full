@@ -15,6 +15,7 @@ class Api {
         return fetch ('http://api.amam.mesto.nomoredomains.rocks/users/me', {
             method: 'GET',
             headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             }
         })
@@ -25,6 +26,7 @@ class Api {
         return fetch ('http://api.amam.mesto.nomoredomains.rocks/cards', {
             method: 'GET',
             headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             }
         })
@@ -35,6 +37,7 @@ class Api {
         return fetch ('http://api.amam.mesto.nomoredomains.rocks/users/me', {
             method: 'PATCH',
             headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -49,6 +52,7 @@ class Api {
         return fetch ('http://api.amam.mesto.nomoredomains.rocks/cards', {
             method: 'POST',
             headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -63,6 +67,7 @@ class Api {
         return fetch(`http://api.amam.mesto.nomoredomains.rocks/cards/${cardId}/likes`, {
             method: 'PUT',
             headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             }
         })
@@ -73,6 +78,7 @@ class Api {
         return fetch(`http://api.amam.mesto.nomoredomains.rocks/cards/${cardId}/likes`, {
             method: 'DELETE',
             headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
         })
@@ -83,6 +89,7 @@ class Api {
         return fetch(`http://api.amam.mesto.nomoredomains.rocks/cards/${cardId}`, {
             method: 'DELETE',
             headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
         })
@@ -93,6 +100,7 @@ class Api {
         return fetch('http://api.amam.mesto.nomoredomains.rocks/users/me/avatar', {
             method: 'PATCH',
             headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -106,6 +114,8 @@ class Api {
 export const api = new Api ({
     baseUrl: 'http://api.amam.mesto.nomoredomains.rocks',
     headers: {
-      'Content-Type': 'application/json'
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json',
+        'Origin': 'http://amam.mesto.nomoredomains.rocks'
     }
   })
