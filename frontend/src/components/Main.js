@@ -7,7 +7,6 @@ function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onCardClick, onC
 
     const currentUser = React.useContext(CurrentUserContext);
 
-
     return (
         <main className="content">
             <section className="profile">
@@ -23,8 +22,8 @@ function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onCardClick, onC
                 <button type="button" className="button button_theme_add" aria-label="Добавить" onClick={onAddPlace}></button>
             </section>
             <section className="photos">
-                <ul className="photos__list">
-                    {cards.map((card) => 
+                <ul className="photos__list"> 
+                    {cards.map((card) =>
                         (<Card 
                             key={card._id}
                             card={card} 
