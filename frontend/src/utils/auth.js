@@ -30,8 +30,7 @@ export const login = (email, password) => {
           .then(getResponseData);
   };
 
-  export const tokenCheck = () => {
-    const token = localStorage.getItem('jwt');
+  export const tokenCheck = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
