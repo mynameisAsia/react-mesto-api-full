@@ -36,12 +36,7 @@ module.exports.deleteCard = (req, res, next) => {
           res.status(200).send({ message: 'Карточка удалена' });
         });
     })
-    .catch((err) => {
-      if (err.kind === 'ObjectId') {
-        return next(new Forbidden('Вы не можете удалять чужие карточки'));
-      }
-      return next(err);
-    });
+    .catch(next);
 };
 
 module.exports.likeCard = (req, res, next) => {

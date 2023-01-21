@@ -5,7 +5,7 @@ const ConflictError = require('../errors/Conflict');
 const NotFound = require('../errors/NotFound');
 const User = require('../models/user');
 
-const { JWT_SECRET = 'some-secret-key' } = process.env;
+const { JWT_SECRET, NODE_ENV } = process.env;
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
@@ -14,10 +14,10 @@ module.exports.login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        JWT_SECRET,
+        NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
         { expiresIn: '7d' },
       );
-      res.cookie('jwt', token, { maxAge: 3600000, httpOnly: true }).send({ token });
+      res.send({ token });
     })
     .catch(next);
 };
@@ -78,12 +78,7 @@ module.exports.getCurrentUser = (req, res, next) => {
     .then((user) => {
       res.status(200).send(user);
     })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        return next(new BadRequest('Переданы некорректные данные пользователя'));
-      }
-      return next(err);
-    });
+    .catch(next);
 };
 
 module.exports.updateUser = (req, res, next) => {

@@ -33,7 +33,7 @@ router.post('/signup', celebrate({
   }),
 }), createUser);
 
-router.use('*', () => {
+router.use('*', auth, () => {
   throw new NotFound('Путь не найден');
 });
 
