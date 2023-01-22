@@ -34,7 +34,8 @@ module.exports.deleteCard = (req, res, next) => {
       Card.findByIdAndRemove(req.params.cardId)
         .then(() => {
           res.status(200).send({ message: 'Карточка удалена' });
-        });
+        })
+        .catch(next);
     })
     .catch(next);
 };
@@ -61,7 +62,7 @@ module.exports.removeLike = (req, res, next) => {
     })
     .catch((err) => {
       if (err.kind === 'ObjectId') {
-        throw new BadRequest('Переданы некорректные данные для удаления лайка');
+        return next(new BadRequest('Переданы некорректные данные для удаления лайка'));
       }
       return next(err);
     });
